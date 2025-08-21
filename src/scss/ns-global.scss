@@ -1,0 +1,27 @@
+@use '../assets/scss/media-vars' as *;
+@use '../assets/scss/vars' as *;
+
+@forward '../components/button/button';
+@forward '../components/link/link';
+@forward '../components/input/input';
+@forward '../components/list-more/list-more';
+
+@forward '../feature/header/header';
+
+.ns-body {
+    font-family: $InterTight;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.4;
+    color: $text-color;
+}
+
+.ns-separator {
+    flex-shrink: 0;
+    display: inline-block;
+    width: var(--ns-separator-size, 6px);
+    height: var(--ns-separator-size, 6px);
+    background-color: var(--ns-separator-background-color, currentColor);
+    border-radius: var(--ns-separator-border-radius, 2px);
+    vertical-align: middle;
+}

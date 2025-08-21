@@ -1,0 +1,86 @@
+include ../consts/index
+
+include ../components/master-svg/icon-mixin
+include ../components/button/button
+include ../components/link/link
+include ../components/input/input
+
+doctype html
+html(lang="ru")
+    head
+        //- base(href=DOMAIN)
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
+        meta(name="format-detection", content="telephone=no")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC", crossorigin="anonymous")
+        link(href=`${DOMAIN}/local/templates/inno-2022/css/common.css`, rel="stylesheet")
+        script(src=`${DOMAIN}/local/templates/inno-2022/js/local/bootstrap.bundle.min.js`)
+        link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css")
+        link(href="https://fonts.googleapis.com/css?family=Inter:regular,500,600,700", rel="stylesheet")
+        link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css")
+        script(src=`${DOMAIN}/local/templates/inno-2022/js/jquery-3.6.0.min.js`)
+        script(src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js")
+        title
+            | Каталог имплантатов Инно от официального представителя в России
+        meta(name="robots", content="index, follow")
+        meta(name="keywords", content="имплантаты, инно имплант, имплантация, стоматологические материалы")
+        meta(name="description", content="Каталог имплантатов от официального представителя в большом ассортименте. Заказывайте имплантаты оптом с выгодой. Взаимовыгодное сотрудничество для покупки имплантов.")
+        link(href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css", type="text/css", rel="stylesheet")
+        link(href=`${DOMAIN}/bitrix/js/ui/design-tokens/dist/ui.design-tokens.min.css?172913847723463`, type="text/css", rel="stylesheet")
+        link(href=`${DOMAIN}/bitrix/js/ui/fonts/opensans/ui.font.opensans.min.css?16911647872320`, type="text/css", rel="stylesheet")
+        link(href=`${DOMAIN}/bitrix/js/main/popup/dist/main.popup.bundle.min.css?174020997126589`, type="text/css", rel="stylesheet")
+        link(href=`${DOMAIN}/bitrix/js/ui/icons/base/ui.icons.base.min.css?16911648581067`, type="text/css", rel="stylesheet")
+        link(href=`${DOMAIN}/bitrix/js/ui/icons/service/ui.icons.service.min.css?174020998068721`, type="text/css", rel="stylesheet")
+        link(href=`${DOMAIN}/local/templates/inno-2022/components/bitrix/catalog/.default/bitrix/catalog.section.list/top/style.css?1721298208292`, type="text/css", rel="stylesheet")
+        link(href=`${DOMAIN}/local/templates/inno-2022/js/loadingSpinnerOverlay/style.css?1652304465538`, type="text/css", data-template-style="true", rel="stylesheet")
+        link(href=`${DOMAIN}/inno-verstka-site/src/css/style.css?1732783379130522", type="text/css`, data-template-style="true", rel="stylesheet")
+        link(href=`${DOMAIN}/local/templates/inno-2022/js/jquery-confirm/jquery-confirm.min.css?166904232122538`, type="text/css", data-template-style="true", rel="stylesheet")
+        link(href=`${DOMAIN}/local/components/devinsight/welcome/templates/.default/style.css?17115513831431`, type="text/css", data-template-style="true", rel="stylesheet")
+        link(href=`${DOMAIN}/local/components/devinsight/widget.channels/templates/.default/style.css?17242247891042`, type="text/css", data-template-style="true", rel="stylesheet")
+        link(href=`${DOMAIN}/local/components/tichiy/uni.forms/templates/.default/style.min.css?174489988415533`, type="text/css", data-template-style="true", rel="stylesheet")
+        script(src=`${DOMAIN}/bitrix/js/main/core/core.min.js?1740209960225181`)
+        script(src=`${DOMAIN}/bitrix/js/pull/protobuf/protobuf.min.js?162150146776433`)
+        script(src=`${DOMAIN}/bitrix/js/pull/protobuf/model.min.js?162150146714190`)
+        script(src=`${DOMAIN}/bitrix/js/main/core/core_promise.min.js?16215014652490`)
+        script(src=`${DOMAIN}/bitrix/js/rest/client/rest.client.min.js?16215014649240`)
+        script(src=`${DOMAIN}/bitrix/js/pull/client/pull.client.min.js?172913847749664`)
+        script(src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js")
+        script(src=`${DOMAIN}/bitrix/js/main/popup/dist/main.popup.bundle.min.js?174020997165924`)
+        script(src=`${DOMAIN}/local/templates/inno-2022/js/aHelper.js?174465424630279`)
+        script(src=`${DOMAIN}/local/templates/inno-2022/js/d52bc5f725.js?174179320912641`)
+        script(src=`${DOMAIN}/local/templates/inno-2022/js/loadingSpinnerOverlay/jquery-loader.js?16690423216976`)
+        script(src=`${DOMAIN}/local/templates/inno-2022/js/jquery.validate.min.js?165095985721599`)
+        script(src=`${DOMAIN}/local/templates/inno-2022/js/jquery.customSelect.min.js?16509598572420`)
+        script(src=`${DOMAIN}/local/templates/inno-2022/js/jquery-confirm/jquery-confirm.min.js?166904232128222`)
+        script(src=`${DOMAIN}/local/templates/inno-2022/script.js?173002947530673`)
+        script(src=`${DOMAIN}/inno-verstka-site/src/js/main.js?17160288406150`)
+        script(src=`${DOMAIN}/local/templates/inno-2022/components/bitrix/sale.basket.basket/top.small/script.js?16510470725019`)
+        script(src=`${DOMAIN}/local/components/devinsight/widget.channels/templates/.default/script.js?17242247893581`)
+        script(src=`${DOMAIN}/local/templates/inno-2022/js/main.js?174593472020091`)
+        script(src=`${DOMAIN}/local/components/tichiy/uni.forms/templates/.default/script.min.js?174491551313252`)
+
+        // NS
+        link(rel="stylesheet" href="/css/ns-global.css")
+        // NS -END
+
+        // NS GOOGLE FONTS
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet")
+        // NS GOOGLE FONTS -END
+    body.ns-body
+        // NS MASTER SVG
+        include ../components/master-svg/master-svg
+        // NS MASTER SVG -END
+        #panel
+        .wrapper
+            include ../feature/header/header
+            main.content
+                .container.inno-main-container
+                    block CONTENT
+        
+        .overlay
+        //- include footer
+
+        script(src="/js/ns-global.js")

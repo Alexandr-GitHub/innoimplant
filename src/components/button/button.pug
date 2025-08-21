@@ -1,0 +1,77 @@
+//- Генерирует компонент кнопки
+//- @param {'button'|'submit'|'reset'} [type] - Тип кнопки
+//- @param {string} [href] - Ссылка для кнопки-ссылки
+//- @param {'green'|'red'|'black'|'white'} [theme='green'] - Тема кнопки
+//- @param {'filled'|'outline'|'transparent'} [variant='filled'] - Вариант кнопки
+//- @param {'large'|'medium'|'small'} [size='large'] - Размер кнопки
+//- @param {string} [className] - Дополнительные классы
+//- @param {string} [iconLeft] - Иконка слева
+//- @param {string} [iconRight] - Иконка справа
+//- @param {boolean} [isOnlyIcon] - Только иконка (Работает когда нет содержимого и только иконка слева)
+mixin button(params = {})
+    - 
+        var isButtonType = ['button', 'submit', 'reset'].includes(params.type);
+        var isLink = !!params.href && !isButtonType;
+        var theme = params.theme || 'green';
+        var variant = params.variant || 'filled';
+        var size = params.size || 'large';
+        var isFullWidth = params.isFullWidth;
+        
+        var isHover = params.isHover;
+        var isFocus = params.isFocus;
+        var isDisabled = params.isDisabled;
+
+        var isOnlyIcon = params.isOnlyIcon;
+        
+        var classes = [
+            'ns-button',
+            params.className,
+            theme !== 'green' && `ns-button--theme-${theme}`,
+            variant !== 'filled' && `ns-button--variant-${variant}`,
+            size !== 'large' && `ns-button--size-${size}`,
+            isHover && `ns-button--hover`,
+            isFocus && `ns-button--focus`,
+            isDisabled && `ns-button--disabled`,
+            isOnlyIcon && `ns-button--only-icon`,
+            isFullWidth && `ns-button--full-width`,
+        ].filter(c => c && c !== true).join(' ')
+
+        var attrs = {
+            class: classes,
+            ...params.attrs
+        }
+
+        if (isButtonType) {
+            attrs.type = params.type || 'button'
+        } else if (isLink) {
+            attrs.href = params.href
+            if (params.target) attrs.target = params.target
+        } else {
+            attrs.role = 'button'
+            if (params.tabindex === undefined) attrs.tabindex = '0'
+        }
+
+    if isButtonType
+        button&attributes(attrs)
+            if params.iconLeft
+                +icon(params.iconLeft, 24)
+            if block
+                block
+            if params.iconRight
+                +icon(params.iconRight, 24)
+    else if isLink
+        a&attributes(attrs)
+            if params.iconLeft
+                +icon(params.iconLeft, 24)
+            if block
+                block
+            if params.iconRight
+                +icon(params.iconRight, 24)
+    else
+        div&attributes(attrs)
+            if params.iconLeft
+                +icon(params.iconLeft, 24)
+            if block
+                block
+            if params.iconRight
+                +icon(params.iconRight, 24)

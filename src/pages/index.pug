@@ -1,0 +1,55 @@
+- 
+    var PAGES = {
+        sites: [
+            { filename: 'vacancies', text: 'Вакансии', status: 'in-progress' }
+        ],
+        demos: [
+            { filename: 'demo-buttons', text: 'Кнопки' },
+            { filename: 'demo-links', text: 'Ссылки' },
+            { filename: 'demo-icons', text: 'Иконки' },
+            { filename: 'demo-inputs', text: 'Инпуты' },
+        ]
+    }
+
+mixin Status(status)
+    case status
+        when 'done'
+            span(title="Готово") 🟢
+        when 'in-progress'
+            span(title="В работе") 🟡
+        when 'waiting'
+            span(title="Ожидает") 🟠
+        when 'paused'
+            span(title="На паузе") 🔴
+        when 'testing'
+            span(title="Тестирование") 🧪
+        when 'developing'
+            span(title="В разработке") 🚧
+        when 'rework'
+            span(title="На доработке") 🔄
+        when 'ready-to-deploy'
+            span(title="Готово к деплою") 📦
+        when 'closed'
+            span(title="Закрыто") ✅
+        when 'canceled'
+            span(title="Отменено") ❌
+        default
+            span(title="Неизвестный статус") ❓
+
+doctype html
+html
+    head: title Navigation Page
+    body
+
+        h1 Страницы макета
+        ul
+            each item in PAGES.sites
+                li
+                    +Status(item.status)
+                    a(href=`${item.filename}.html`)!=item.text
+        
+        h2 Демо страницы (компоненты)
+        ul
+            each item in PAGES.demos
+                li
+                    a(href=`${item.filename}.html`)!=item.text

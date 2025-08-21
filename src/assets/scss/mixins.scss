@@ -1,0 +1,39 @@
+@use 'media-vars' as *;
+@use 'vars' as *;
+
+// BREAKPOINTS
+@mixin media-table {
+    @media #{$media-1000} {
+        @content;
+    }
+}
+
+@mixin media-mobile {
+    @media #{$media-768} {
+        @content;
+    }
+}
+
+// STATE
+@mixin onFocus {
+    &--focus,
+    &:focus {
+        @content;
+    }
+}
+
+@mixin onHover {
+    @media #{$media-hover} {
+        &--hover,
+        &:hover {
+            @content;
+        }
+    }
+}
+
+@mixin onDisabled {
+    &--disabled,
+    &:disabled {
+        @content;
+    }
+}

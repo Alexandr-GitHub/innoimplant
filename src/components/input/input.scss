@@ -1,0 +1,161 @@
+@use '../../assets/scss/media-vars' as *;
+@use '../../assets/scss/mixins' as *;
+@use '../../assets/scss/vars' as *;
+
+.ns-input {
+    --ns-input-padding-left: 12px;
+    --ns-input-padding-right: 4px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: var(--ns-input-gap, 4px);
+    position: relative;
+    overflow: hidden;
+
+    &__field {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+
+        input {
+            display: block;
+            width: 100%;
+            height: var(--ns-input-height, 44px);
+            border-radius: var(--ns-input-border-radius, 12px);
+            background-color: var(--ns-input-background-color, #{rgba(#072626, .05)});
+            padding: 0 var(--ns-input-padding-right) 0 var(--ns-input-padding-left);
+            font: inherit;
+            font-weight: 400;
+            font-size: var(--ns-input-font-size, 14px);
+            color: var(--ns-input-color, #{$text-color});
+            box-sizing: border-box;
+            box-shadow: 0 0 0 var(--ns-input-outline-size, 0) var(--ns-input-outline-color, rgba(#072626, .9)) inset;
+            transition: {
+                property: background-color, color, box-shadow;
+                duration: .2s;
+                timing-function: ease;
+            };
+
+            // FIX INPUT AUTOCOMPLITE
+            &:-webkit-autofill {
+                &, &:focus, &:active, &:hover {
+                    color: inherit !important;
+
+                    background-color: initial !important;
+                    background-image: none !important;
+                    box-shadow: none !important;
+
+                    transition: background-color 99999s ease-in-out 0s !important;
+                }
+            }
+
+            // REMOVE SEARCH CLEAR BUTTON
+            &[type="search"]::-webkit-search-decoration,
+            &[type="search"]::-webkit-search-cancel-button,
+            &[type="search"]::-webkit-search-results-button,
+            &[type="search"]::-webkit-search-results-decoration {
+                display: none !important;
+                -webkit-appearance: none !important;
+            }
+        }
+    }
+
+    &__icon {
+        display: block;
+        width: var(--ns-input-icon-size, 20px);
+        height: var(--ns-input-icon-size, 20px);
+        position: absolute;
+        left: var(--ns-input-icon-offset-left, 12px);
+        pointer-events: none;
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: var(--ns-input-actions-gap, 8px);
+        position: absolute;
+        right: var(--ns-input-actions-offset-right, 4px);
+        transform: scale(.9);
+        opacity: 0;
+        pointer-events: none;
+        transition: {
+            property: opacity, transform;
+            duration: .3s;
+            timing-function: ease;
+        };
+    }
+
+    &:has(input:not(:placeholder-shown)) &__actions {
+        transform: scale(1);
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    &:has(&__icon) input {
+        --ns-input-padding-left: calc(12px + var(--ns-input-icon-size, 20px) + 6px);
+    }
+
+    &:has(&__actions) input {
+        --ns-input-padding-right: calc(6px + var(--ns-input-actions-button-size, 36px) + var(--ns-input-actions-offset-right, 4px));
+    }
+
+    // NUMBER
+    &__number {
+        --ns-input-padding-left: 12px;
+        --ns-input-padding-right: 12px;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: stretch;
+
+        &-button,
+        input {
+            width: calc(100% / 3);
+        }
+
+        input {
+            border-radius: 0;
+            text-align: center;
+            appearance: textfield !important;
+
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        }
+
+        &-button {
+            height: auto;
+
+            &--dec {
+                border-radius: var(--ns-input-border-radius, 12px) 0 0 var(--ns-input-border-radius, 12px);
+            }
+
+            &--inc {
+                border-radius: 0 var(--ns-input-border-radius, 12px) var(--ns-input-border-radius, 12px) 0;
+            }
+        }
+    }
+
+    @include onHover {
+        input {
+            --ns-input-background-color: var(--ns-input-background-color--hover, #{rgba(#072626, .1)});
+        }
+    }
+
+    &--focus,
+    &:has(input:focus) {
+        --ns-input-background-color: var(--ns-input-background-color--focus, #{rgba(#072626, .05)});
+        --ns-input-outline-size: var(--ns-input-outline-size--focus, 2px);
+    }
+
+    // OTHER
+    &--full-width {
+        width: 100%;
+    }
+}

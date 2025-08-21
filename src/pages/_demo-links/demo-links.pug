@@ -1,0 +1,55 @@
+extends ../../layouts/html
+
+block CONTENT
+    - var THEMES = ['gray', 'green', 'black', 'white'];
+    - var STATUS = ['isDefault', 'isHover', 'isFocus'];
+    - var SIZES = ['small', 'medium', 'large'];
+    - var TEXT = 'Артикул: ST3508SM';
+
+    style.
+        body {height: 100vh; height: 100dvh; overflow: hidden;}
+
+    div(style={
+        'display': 'block',
+        'width': 'auto',
+        'height': 'auto',
+        'background-color': '#f0f0f0',
+        'padding': '80px',
+        'position': 'fixed',
+        'inset': '0',
+        'overflow': 'auto',
+        'z-index': '9999'
+    }): div(style={
+        'display': 'flex',
+        'flex-direction': 'column',
+        'justify-content': 'center',
+        'align-items': 'center',
+        'gap': '80px',
+        'width': '100%',
+        'height': 'auto',
+        'min-height': '100%'
+    })
+        div(style={
+            'display': 'grid',
+            'grid-template-columns': `repeat(${THEMES.length}, 1fr)`,
+            'gap': '20px',
+            'zoom': '1'
+        })
+            each theme in THEMES
+                div(style={
+                    'display': 'flex',
+                    'flex-direction': 'column',
+                    'justify-content': 'flex-start',
+                    'align-items': 'center',
+                    'gap': '20px'
+                })
+                    each status in STATUS
+                        div(style={
+                            'display': 'flex',
+                            'flex-direction': 'column',
+                            'justify-content': 'flex-start',
+                            'align-items': 'center',
+                            'gap': '20px'
+                        })
+                            each size in SIZES
+                                +link({ theme, size, iconLeft: 'copy-simple', iconRight: 'copy-simple', [status]: true })!=TEXT

@@ -1,0 +1,17 @@
+include ../../consts/helper
+
+mixin icon(id, width, height, viewBox = null)
+    - var isIcon = !hasFileExtension(id)
+    if isIcon
+        svg(
+            width=width
+            height=height || width
+            viewBox=viewBox || `0 0 ${width} ${height || width}`
+            class=[
+                'ns-icon',
+                attributes.class
+            ]
+        )&attributes(attributes)
+            use(href=`#${id}`)/
+    else
+        img(src=id)&attributes(attributes)

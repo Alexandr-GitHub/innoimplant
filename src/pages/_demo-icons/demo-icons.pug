@@ -1,0 +1,82 @@
+extends ../../layouts/html.pug
+
+block CONTENT
+    - 
+        var ICONS = [
+            'arrow-down-trig',
+            'arrow-left-line',
+            'arrow-right',
+            'arrow-right-line',
+            'auto',
+            'cart-filled',
+            'cart',
+            'cash',
+            'catalog',
+            'check',
+            'close',
+            'copy-simple',
+            'cup',
+            'customer-service',
+            'divider-cube',
+            'doc',
+            'doc-load',
+            'education',
+            'empathy',
+            'employee',
+            'fire',
+            'heart',
+            'info',
+            'learning',
+            'link',
+            'login',
+            'mail',
+            'minus',
+            'office',
+            'play',
+            'plus',
+            'search',
+            'share',
+            'telegram',
+            'tooltip-tail',
+            'trash',
+            'user',
+            'vk',
+            'work',
+            'world',
+            'youtube',
+        ]
+
+    style.
+        dl { display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; }
+        dl, dl dt, dl dd { margin: 0; font-size: 12px; font-weight: 400; line-height: 1; }
+        dl > div { display: flex; justify-content: flex-start; align-items: flex-start; gap: 4px; }
+        .icon { flex-shrink: 0; width: 32px; }
+
+    ul(style={
+        'display': 'grid',
+        'grid-template-columns': 'repeat(4, 1fr)',
+        'gap': '0',
+    })
+        each name in ICONS
+            li(style={
+                'box-shadow': '0 0 0 1px #ddd',
+                'padding': '10px'
+            })
+                div(style={
+                    'display': 'flex',
+                    'justify-content': 'flex-start',
+                    'align-items': 'center',
+                    'gap': '10px',
+                    'margin-bottom': '4px'
+                })
+                    +icon(name, 24).icon
+                    dl
+                        div
+                            dt name:
+                            dd: code!=name
+                        div
+                            dt pug:
+                            dd: code!=`+icon('${name}', 24)`
+                dl: div
+                    dt html:
+                    dd: code=`<svg width="24" height="24" viewBox="0 0 24 24"><use href="#${name}"/></svg>`

@@ -1,0 +1,131 @@
+include ../consts/index
+
+header.header
+    .container
+        div(class="header__row")
+            // ! 1 колонка
+            .header__column.header__main-logo
+                a(href="/" class="header__logo")
+                    img(src=`${DOMAIN}/inno-verstka-site/src/img/inno-logo.svg` alt="Inno-logo")
+                    // <img src="/inno-verstka-site/src/img/inno-logo-newyear.svg" alt="Inno-logo">
+                .header__phone-sm
+                    a.header__phone-sm-phone(href="tel:88007073037") 8 800 707 303 7
+                    a(href="/catalog/" class="header-contacts__btn btn-hover")
+                        i(class="header-contacts__text-icon")
+                            img(src=`${DOMAIN}/inno-verstka-site/src/icons/text-icon.svg` alt="text-icon")
+                        div Каталог
+            // ! 2 колонка
+            nav.header__column.header-menu
+                div.header-menu__sign-block
+                    div.header__burger.burger
+                        div.burger__btn: span
+                        ul.burger__box
+                            li.icon-item
+                                img(src=`${DOMAIN}/inno-verstka-site/src/img/inno-logo.svg` alt="Inno-logo")
+                            li
+                                form(method="GET" action="/search/"): input(type="text" name="q" placeholder="Поиск")
+                            li
+                                a.burger__link(href="/catalog/cowellmedi_implantaty/")
+                                    img(src=`${DOMAIN}/inno-verstka-site/src/icons/cowellmedi-icon.svg`)
+                                    | Cowellmedi
+                            li
+                                a.burger__link(href="/catalog/scilogex_tsentrifugi_zapchasti_probirki/")
+                                    img(src=`${DOMAIN}/inno-verstka-site/src/icons/scilogex-icon.svg`)
+                                    | Scilogex
+                            li
+                                a.burger__link(href="/catalog/pezoinstrument/")
+                                    img(src=`${DOMAIN}/inno-verstka-site/src/icons/bonart-icon.svg`)
+                                    | Стоматологическое оборудование
+                            li
+                                a.burger__link(href="/catalog/sistema_regeneratsionnykh_materialov_botiss/")
+                                    img(src=`${DOMAIN}/inno-verstka-site/src/icons/botiss-icon.svg`)
+                                    | Костный материал
+                            li
+                                a.burger__link(href="/catalog/brendirovannaya_produktsiya/")
+                                    img(src=`${DOMAIN}/inno-verstka-site/src/icons/brands.svg`)
+                                    | Брендированная продукция
+                            li
+                                a.burger__link(href="/catalog/special/")
+                                    img(src=`${DOMAIN}/inno-verstka-site/src/icons/offer-icon.svg`)
+                                    | Специальные предложения
+                            li
+                                a.burger__link(href="/education/")
+                                    img(src=`${DOMAIN}/inno-verstka-site/src/icons/events-icon.svg`)
+                                    | Курсы
+                            li
+                                .bottom-menu
+                                    a(href="/about/", class="burger__link") О компании
+                                    a(href="/catalog/howto/", class="burger__link") Как заказать?
+                                    a(href="/inno-digital/", class="burger__link") Inno digital
+                                    a(href="/contacts/", class="burger__link") Контакты
+                    a(href="/auth/?register=yes", class="header-menu__registration link-underline") Регистрация
+                    a(href="/auth/", class="header-menu__sign link-underline") Вход
+                    form(method="GET", action="/search/"): .header-menu__input: input(type="text", name="q", class="header-menu__search-form", placeholder="Поиск")
+                ul(class="header-menu__list")
+                    li(class="header-menu__item")
+                        a(href="/about/", class="header-menu__link link-underline") О компании
+                    li(class="header-menu__item")
+                        a(href="/catalog/howto/", class="header-menu__link link-underline")  Как заказать?
+                    li(class="header-menu__item")
+                        a(href="/inno-digital/", class="header-menu__link link-underline") Inno digital
+                    li(class="header-menu__item")
+                        a(href="/contacts/", class="header-menu__link link-underline") Контакты
+            // ! 3 колонка
+            div(class="header__column header-contacts")
+                div(class="header-contacts__row")
+                    a(href="tel:88007073037", class="header-contacts__phone link-underline") 8 800 707 303 7
+                    a(href="/catalog/", class="header-contacts__btn btn-hover")
+                        i(class="header-contacts__text-icon")
+                            img(src=`${DOMAIN}/inno-verstka-site/src/icons/text-icon.svg", alt="text-icon`)
+                        div Каталог
+                div(class="header-contacts__row header-contacts__row-cart")
+                    div(class="header-contacts__cart-wrapper cart-wrapper")
+                        a(href="/personal/cart/", class="header-contacts__cart link-underline")
+                            span(class="header-contacts__text-cart-clear")
+                                | В корзине пока ничего нет
+            // ! 4 колонка
+            div(class="header__column header-brends")
+                div(class="header-brends__row")
+                    div(class="header-brends__item")
+                        a(href="/catalog/cowellmedi_implantaty/", class="header-brends__link  link-underline")
+                            i(class="header-brends__icon")
+                                img(src=`${DOMAIN}/inno-verstka-site/src/icons/cowellmedi-icon.svg`, alt="cowellmedi-icon")
+                            | Cowellmedi
+                    div(class="header-brends__item")
+                        a(href="/catalog/scilogex_tsentrifugi_zapchasti_probirki/", class="header-brends__link link-underline")
+                            i(class="header-brends__icon")
+                                img(src=`${DOMAIN}/inno-verstka-site/src/icons/scilogex-icon.svg`, alt="scilogex-icon")
+                            | Scilogex
+                    div(class="header-brends__item")
+                        a(href="/catalog/pezoinstrument/", class="header-brends__link link-underline")
+                            i(class="header-brends__icon")
+                                img(src=`${DOMAIN}/inno-verstka-site/src/icons/bonart-icon.svg`, alt="bonart-icon")
+                            | Стоматологическое
+                            br
+                            | оборудование
+                    div(class="header-brends__item")
+                        a(href="/catalog/sistema_regeneratsionnykh_materialov_botiss/", class="header-brends__link link-underline")
+                            i(class="header-brends__icon")
+                                img(src=`${DOMAIN}/inno-verstka-site/src/icons/botiss-icon.svg`, alt="botiss-icon")
+                            | Костный
+                            br
+                            | материал
+                    div(class="header-brends__item")
+                        a(href="/catalog/brendirovannaya_produktsiya/", class="header-brends__link link-underline")
+                            i(class="header-brends__icon")
+                                img(src=`${DOMAIN}/inno-verstka-site/src/icons/brands.svg`, alt="botiss-icon")
+                            | Брендированная
+                            br
+                            | продукция
+                    div(class="header-brends__item")
+                        a(href="/catalog/special/", class="header-brends__link link-underline")
+                            i(class="header-brends__icon")
+                                img(src=`${DOMAIN}/inno-verstka-site/src/icons/offer-icon.svg`, alt="offer-icon")
+                            | Специальные
+                            br
+                            | предложения
+                    div(class="header-brends__item")
+                        a(href="/education/", class="header-brends__link link-underline")
+                            i(class="header-brends__icon")
+                                img(src=`${DOMAIN}/inno-verstka-site/src/icons/events-icon.svg`, alt="events-icon")
+                            | Курсы

@@ -1,0 +1,84 @@
+extends ../../layouts/html
+
+block CONTENT
+    - 
+        var TYPES = [
+            { type: 'text', },
+            { type: 'tel', },
+            { type: 'email', },
+            { type: 'search', params: { placeholder: 'Поиск товара' } },
+            { type: 'password', },
+            { type: 'url', },
+            { type: 'number', params: { value: 0, min: 0, max: 10 } },
+            { type: 'button', },
+            { type: 'checkbox', },
+            { type: 'color', },
+            { type: 'date', },
+            { type: 'datetime-local', },
+            { type: 'file', },
+            { type: 'hidden', },
+            { type: 'image', },
+            { type: 'month', },
+            { type: 'radio', },
+            { type: 'range', },
+            { type: 'reset', },
+            { type: 'submit', },
+            { type: 'time', },
+            { type: 'week', },
+        ];
+
+    style.
+        body {height: 100vh; height: 100dvh; overflow: hidden;}
+
+    div(style={
+        'display': 'block',
+        'width': 'auto',
+        'height': 'auto',
+        'background-color': '#f0f0f0',
+        'padding': '80px',
+        'position': 'fixed',
+        'inset': '0',
+        'overflow': 'auto',
+        'z-index': '9999'
+    }): div(style={
+        'display': 'flex',
+        'flex-direction': 'column',
+        'justify-content': 'center',
+        'align-items': 'center',
+        'gap': '80px',
+        'width': '100%',
+        'height': 'auto',
+        'min-height': '100%',
+    })
+        ul(style={
+            'display': 'grid',
+            'grid-template-columns': 'repeat(5, 1fr)',
+            'gap': '0',
+        })
+            each item in TYPES
+                - 
+                    var _params = { type: item.type, placeholder: 'Текст в инпуте', value: '', ...(item.params || {}) };
+
+                li(style={
+                    'box-shadow': '0 0 0 1px #ddd',
+                    'padding': '10px'
+                })
+                    code!=item.type
+                    br
+                    if item.type === 'button'
+                        +input(_params)
+                            code.
+                                +button({ type: 'button' }) TEXT
+                            +button({ type: 'button' }) TEXT
+                    else if item.type === 'submit'
+                        +input(_params)
+                            code.
+                                +button({ type: 'submit' }) Отправить
+                            +button({ type: 'submit' }) Отправить
+                    else if item.type === 'reset'
+                        +input(_params)
+                            code.
+                                +button({ type: 'reset' }) Сбросить
+                            +button({ type: 'reset' }) Сбросить
+                    else 
+                        +input(_params)

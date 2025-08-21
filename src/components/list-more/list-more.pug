@@ -1,0 +1,9 @@
+mixin ListMore(links = [], moreText = 'Ещё')
+    nav.ns-list-more
+        ul.ns-list-more__list
+            each item in links
+                li: a(href=item.href || '#')!=item.text
+        .ns-list-more__btn(role="button" aria-label=moreText)
+            !=moreText
+            +icon('arrow-down-trig', 24)
+        ul.ns-list-more__droplist

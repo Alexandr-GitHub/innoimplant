@@ -1,0 +1,70 @@
+mixin input(params = {})
+    - 
+        var isSupport = ['text', 'search', 'url', 'tel', 'email', 'password', 'number'].includes(params.type);
+        var isClear = ['text', 'search', 'url', 'tel', 'email', 'password', 'number'].includes(params.type);
+        var isSearch = params.type === 'search';
+        var isNumber = params.type === 'number';
+        var error = params.error;
+        
+        var isFullWidth = params.isFullWidth;
+
+        function fixNil (value) {
+            return value === 0 ? '0' : value;
+        }
+
+        var classes = [
+            params.className,
+            isFullWidth && `ns-input--full-width`,
+
+        ].filter(c => c && c !== true).join(' ')
+
+        var attrs = {
+            ...params
+        }
+
+        attrs.type = params.type || 'text';
+        attrs.placeholder = params.placeholder || ' ';
+        attrs.value = fixNil(params.value);
+        attrs.readOnly = isNumber && !params.readOnly ? true : params.readOnly || false;
+        attrs.min = isNumber ? fixNil(params.min) || false : false;
+        attrs.max = isNumber ? fixNil(params.max) || false : false;
+
+    if isSupport
+        if isNumber
+            label.ns-input(class=classes)
+                .ns-input__field.ns-input__number
+                    +button({ size: 'custom', iconLeft: 'minus', className: 'ns-input__number-button ns-input__number-button--dec', isOnlyIcon: true })
+                    input&attributes(attrs)
+                    +button({ size: 'custom', iconLeft: 'plus', className: 'ns-input__number-button ns-input__number-button--inc', isOnlyIcon: true })
+                if error
+                    .ns-input__error!=error
+        else if isSearch
+            label.ns-input(class=classes)
+                .ns-input__field
+                    +icon('search', 24).ns-input__icon
+                    input&attributes(attrs)
+                    .ns-input__actions
+                        +button({ size: 'small', iconLeft: 'close', className: 'ns-input__actions--clear', isOnlyIcon: true, variant: 'transparent' })
+                        +button({ size: 'small', type: 'submit', className: 'ns-input__actions--submit' }) Искать
+                if error
+                    .ns-input__error!=error
+        else
+            label.ns-input(class=classes)
+                .ns-input__field
+                    input&attributes(attrs)
+                    if isClear
+                        .ns-input__actions
+                            +button({ size: 'small', iconLeft: 'close', className: 'ns-input__actions--clear', isOnlyIcon: true, variant: 'transparent' })
+                if error
+                    .ns-input__error!=error
+        
+    else 
+        div
+            input(type=attrs.type)
+            hr
+            if block
+                span(style={ 'font-size': '10px', 'color': 'red' }) NOT SUPPORTED, REPLACE TO
+                br
+                block
+            else 
+                span(style={ 'font-size': '10px', 'color': 'red' }) NOT SUPPORTED

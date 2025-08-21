@@ -1,0 +1,218 @@
+@use '../../assets/scss/media-vars' as *;
+@use '../../assets/scss/mixins' as *;
+@use '../../assets/scss/vars' as *;
+
+.ns-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--ns-button-gap, 8px);
+    width: auto;
+    height: var(--ns-button-height, 60px);
+    border-radius: var(--ns-button-border-radius, 14px);
+    background-color: var(--ns-button-background-color, var(--ns-button-theme-background-color--default));
+    font: inherit;
+    font-weight: 500;
+    font-size: var(--ns-button-font-size, 16px);
+    text-align: center;
+    white-space: nowrap;
+    color: var(--ns-button-color, var(--ns-button-theme-color--default)) !important;
+    padding: 0 var(--ns-button-padding, 24px);
+    box-shadow: 0 0 0 var(--ns-button-outline-width) var(--ns-button-theme-outline-color) inset;
+    user-select: none;
+    cursor: pointer;
+    transition: {
+        property: background-color, color, box-shadow;
+        duration: .2s;
+        timing-function: ease;
+    };
+
+    > svg,
+    > img {
+        flex-shrink: 0;
+        display: block;
+        width: var(--ns-button-icon-size, 24px);
+        height: var(--ns-button-icon-size, 24px);
+        object-fit: contain;
+    }
+
+    // SIZES
+    &--size {
+        &-medium {
+            --ns-button-height: 48px;
+            --ns-button-gap: 6px;
+            --ns-button-border-radius: 12px;
+            --ns-button-padding: 16px;
+            --ns-button-icon-size: 20px;
+        }
+
+        &-small {
+            --ns-button-height: 36px;
+            --ns-button-gap: 2px;
+            --ns-button-border-radius: 10px;
+            --ns-button-padding: 16px;
+            --ns-button-icon-size: 16px;
+            --ns-button-font-size: 14px;
+        }
+    }
+
+    // THEME
+    & {
+        --ns-button-theme-background-color--default: #049A9B;
+        --ns-button-theme-background-color--hover: #00BEBF;
+        --ns-button-theme-background-color--focus: #049A9B;
+        --ns-button-theme-color--default: #FFFFFF;
+        --ns-button-theme-color--hover: #FFFFFF;
+        --ns-button-theme-color--focus: #FFFFFF;
+        --ns-button-theme-outline-color: #006566;
+
+        &--variant-outline {
+            --ns-button-theme-background-color--default: #{rgba(#049A9B, .1)};
+            --ns-button-theme-background-color--hover: #{rgba(#006566, .1)};
+            --ns-button-theme-background-color--focus: #{rgba(#049A9B, .1)};
+            --ns-button-theme-color--default: #006566;
+            --ns-button-theme-color--hover: #006566;
+            --ns-button-theme-color--focus: #006566;
+        }
+
+        &--variant-transparent {
+            --ns-button-theme-background-color--default: #{rgba(#049A9B, 0)};
+            --ns-button-theme-background-color--hover: #{rgba(#006566, .1)};
+            --ns-button-theme-background-color--focus: #{rgba(#049A9B, 0)};
+            --ns-button-theme-color--default: #006566;
+            --ns-button-theme-color--hover: #006566;
+            --ns-button-theme-color--focus: #006566;
+        }
+    }
+
+    $root: &;
+    &--theme {
+        &-red {
+            --ns-button-theme-background-color--default: #F92929;
+            --ns-button-theme-background-color--hover: #FF5151;
+            --ns-button-theme-background-color--focus: #F92929;
+            --ns-button-theme-color--default: #FFFFFF;
+            --ns-button-theme-color--hover: #FFFFFF;
+            --ns-button-theme-color--focus: #FFFFFF;
+            --ns-button-theme-outline-color: #CD0000;
+
+            $theme: &;
+            @at-root {
+                #{$theme}#{$root}--variant-outline {
+                    --ns-button-theme-background-color--default: #{rgba(#F92929, .1)};
+                    --ns-button-theme-background-color--hover: #{rgba(#CD0000, .1)};
+                    --ns-button-theme-background-color--focus: #{rgba(#F92929, .1)};
+                    --ns-button-theme-color--default: #CD0000;
+                    --ns-button-theme-color--hover: #CD0000;
+                    --ns-button-theme-color--focus: #CD0000;
+                }
+
+                #{$theme}#{$root}--variant-transparent {
+                    --ns-button-theme-background-color--default: #{rgba(#CD0000, 0)};
+                    --ns-button-theme-background-color--hover: #{rgba(#CD0000, .1)};
+                    --ns-button-theme-background-color--focus: #{rgba(#CD0000, 0)};
+                    --ns-button-theme-color--default: #CD0000;
+                    --ns-button-theme-color--hover: #CD0000;
+                    --ns-button-theme-color--focus: #CD0000;
+                }
+            }
+        }
+
+        &-black {
+            --ns-button-theme-background-color--default: #072626;
+            --ns-button-theme-background-color--hover: #{rgba(#072626, .7)};
+            --ns-button-theme-background-color--focus: #072626;
+            --ns-button-theme-color--default: #FFFFFF;
+            --ns-button-theme-color--hover: #FFFFFF;
+            --ns-button-theme-color--focus: #FFFFFF;
+            --ns-button-theme-outline-color: #006566;
+
+            $theme: &;
+            @at-root {
+                #{$theme}#{$root}--variant-outline {
+                    --ns-button-theme-background-color--default: #{rgba(#072626, .05)};
+                    --ns-button-theme-background-color--hover: #{rgba(#072626, .1)};
+                    --ns-button-theme-background-color--focus: #{rgba(#072626, .05)};
+                    --ns-button-theme-color--default: #{rgba(#072626, .9)};
+                    --ns-button-theme-color--hover: #{rgba(#072626, .9)};
+                    --ns-button-theme-color--focus: #{rgba(#072626, .9)};
+                    --ns-button-theme-outline-color: #{rgba(#072626, .9)};
+                }
+
+                #{$theme}#{$root}--variant-transparent {
+                    --ns-button-theme-background-color--default: #{rgba(#072626, 0)};
+                    --ns-button-theme-background-color--hover: #{rgba(#072626, .1)};
+                    --ns-button-theme-background-color--focus: #{rgba(#072626, 0)};
+                    --ns-button-theme-color--default: #{rgba(#072626, .9)};
+                    --ns-button-theme-color--hover: #{rgba(#072626, .9)};
+                    --ns-button-theme-color--focus: #{rgba(#072626, .9)};
+                    --ns-button-theme-outline-color: #{rgba(#072626, .9)};
+                }
+            }
+        }
+
+        &-white {
+            --ns-button-theme-background-color--default: #FFFFFF;
+            --ns-button-theme-background-color--hover: #{rgba(#FFFFFF, .8)};
+            --ns-button-theme-background-color--focus: #FFFFFF;
+            --ns-button-theme-color--default: #072626;
+            --ns-button-theme-color--hover: #072626;
+            --ns-button-theme-color--focus: #072626;
+            --ns-button-theme-outline-color: #072626;
+
+            $theme: &;
+            @at-root {
+                #{$theme}#{$root}--variant-outline {
+                    --ns-button-theme-background-color--default: #{rgba(#FFFFFF, .15)};
+                    --ns-button-theme-background-color--hover: #{rgba(#FFFFFF, .25)};
+                    --ns-button-theme-background-color--focus: #{rgba(#FFFFFF, .15)};
+                    --ns-button-theme-color--default: #FFFFFF;
+                    --ns-button-theme-color--hover: #FFFFFF;
+                    --ns-button-theme-color--focus: #FFFFFF;
+                    --ns-button-theme-outline-color: #FFFFFF;
+                }
+
+                #{$theme}#{$root}--variant-transparent {
+                    --ns-button-theme-background-color--default: #{rgba(#FFFFFF, 0)};
+                    --ns-button-theme-background-color--hover: #{rgba(#FFFFFF, .15)};
+                    --ns-button-theme-background-color--focus: #{rgba(#FFFFFF, 0)};
+                    --ns-button-theme-color--default: #FFFFFF;
+                    --ns-button-theme-color--hover: #FFFFFF;
+                    --ns-button-theme-color--focus: #FFFFFF;
+                    --ns-button-theme-outline-color: #FFFFFF;
+                }
+            }
+        }
+    }
+
+    // HOVER
+    @include onHover {
+        --ns-button-background-color: var(--ns-button-theme-background-color--hover);
+        --ns-button-color: var(--ns-button-theme-color--hover);
+    }
+
+    // FOCUS
+    @include onFocus {
+        --ns-button-background-color: var(--ns-button-theme-background-color--focus);
+        --ns-button-color: var(--ns-button-theme-color--focus);
+        --ns-button-outline-width: 2px;
+    }
+
+    // DISABLED
+    @include onDisabled {
+        opacity: .6 !important;
+        cursor: default !important;
+        pointer-events: none !important;
+    }
+
+    // OTHER
+    &--only-icon {
+        flex-shrink: 0;
+        width: var(--ns-button-height, 60px);
+        padding: 0 !important;
+    }
+
+    &--full-width {
+        width: 100%;
+    }
+}

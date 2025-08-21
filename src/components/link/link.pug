@@ -1,0 +1,47 @@
+//- Генерирует компонент ссылка
+//- @param {string} [href] - Ссылка
+//- @param {'green'|'red'|'black'|'white'} [theme='green'] - Тема ссылки
+//- @param {'filled'|'outline'|'transparent'} [variant='filled'] - Вариант ссылки
+//- @param {'large'|'medium'|'small'} [size='large'] - Размер ссылки
+//- @param {string} [className] - Дополнительные классы
+//- @param {string} [iconLeft] - Иконка слева
+//- @param {string} [iconRight] - Иконка справа
+//- @param {boolean} [isOnlyIcon] - Только иконка (Работает когда нет содержимого и только иконка слева)
+mixin link(params = {})
+    - 
+        var theme = params.theme || 'green';
+        var size = params.size || 'large';
+        var isBlock = params.isBlock;
+        
+        var isHover = params.isHover;
+        var isFocus = params.isFocus;
+        var isDisabled = params.isDisabled;
+
+        var isOnlyIcon = params.isOnlyIcon;
+        
+        var classes = [
+            'ns-link',
+            params.className,
+            theme !== 'green' && `ns-link--theme-${theme}`,
+            size !== 'small' && `ns-link--size-${size}`,
+            isHover && `ns-link--hover`,
+            isFocus && `ns-link--focus`,
+            isDisabled && `ns-link--disabled`,
+            isOnlyIcon && `ns-link--only-icon`,
+            isBlock && `ns-link--block`,
+        ].filter(c => c && c !== true).join(' ')
+
+        var attrs = {
+            class: classes,
+            ...params.attrs
+        }
+
+        attrs.href = params.href
+
+    a&attributes(attrs)
+        if params.iconLeft
+            +icon(params.iconLeft, 24)
+        if block
+            block
+        if params.iconRight
+            +icon(params.iconRight, 24)

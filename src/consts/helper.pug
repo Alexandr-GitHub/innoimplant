@@ -1,0 +1,16 @@
+- 
+    function hasFileExtension(str) {
+        if (typeof str !== 'string' || !str.trim()) return false;
+        const cleanPath = str.split(/[?#]/)[0];
+        const filename = cleanPath.split('/').pop();
+        const lastDotIndex = filename.lastIndexOf('.');
+        
+        if (lastDotIndex === -1
+            || lastDotIndex === 0
+            || lastDotIndex === filename.length - 1
+        ) return false;
+        
+        const extension = filename.slice(lastDotIndex + 1);
+        
+        return /^[a-zA-Z0-9]{1,10}$/.test(extension);
+    }

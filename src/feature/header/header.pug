@@ -1,0 +1,100 @@
+include ../../consts/contacts
+include ../../components/list-more/list-more
+
+-
+    var HEADER = {
+        moreList: [
+            { text: 'О компании' },
+            { text: 'Inno Digital' },
+            { text: 'Контакты' },
+            { text: 'Новости' },
+            { text: 'Как заказать?' },
+            { text: 'Доставка и оплата' },
+            { text: 'Вопрос-Ответ' },
+            { text: 'Вакансии' },
+            { text: 'Документы' },
+        ],
+        userLinks: [
+            { text: 'Константин', iconName: 'user' },
+            { text: 'Корзина', iconName: 'cart' },
+        ],
+        navigation: [
+            {
+                icon: `${FILES_IMAGES_PATH}header/item-1.svg`,
+                text: 'Cowellmedi'
+            },
+            {
+                icon: `${FILES_IMAGES_PATH}header/item-2.svg`,
+                text: 'Inno&nbsp;Digital'
+            },
+            {
+                icon: `${FILES_IMAGES_PATH}header/item-3.svg`,
+                text: 'Inno&nbsp;Education'
+            },
+            {
+                icon: `${FILES_IMAGES_PATH}header/item-4.svg`,
+                text: 'Scilogex'
+            },
+            {
+                icon: `${FILES_IMAGES_PATH}header/item-5.svg`,
+                text: 'Стоматологическое оборудование'
+            },
+            {
+                icon: `${FILES_IMAGES_PATH}header/item-6.svg`,
+                text: 'Костный материал'
+            },
+            {
+                icon: `${FILES_IMAGES_PATH}header/item-7.svg`,
+                text: 'Специальные предложения'
+            },
+            {
+                icon: `${FILES_IMAGES_PATH}header/item-8.svg`,
+                text: 'Брендированная продукция'
+            },
+        ]
+    }
+
+header.ns-header
+    .ns-header__stripe: .container
+        .ns-header__stripe-left
+            +ListMore(HEADER.moreList)
+        .ns-header__stripe-right
+            .ns-header__stripe-contacts
+                a(href=CONTACTS.email.href)!=CONTACTS.email.text
+                .ns-separator
+                a(href=CONTACTS.telephone.href)!=CONTACTS.telephone.text
+            span
+                | с&nbsp;9:00 до&nbsp;18:00, будние дни
+    .ns-header__main: .container
+        a(href="/").ns-header__main-logo
+            img(src=`${FILES_IMAGES_PATH}header/logo.svg` width="178" height="80" alt="ИННО ИМПЛАНТ РУ")/
+        .ns-header__main-content
+            +button({ href: '#', iconLeft: 'catalog', size: 'medium' }) Каталог
+            +input({ type: 'search', placeholder: 'Поиск по товарам', isFullWidth: true })
+        ul.ns-header__main-links
+            each item in HEADER.userLinks
+                li.ns-header__button: a(href="#" role="button")
+                    +icon(item.iconName, 24)
+                    span!=item.text
+    ul.ns-header__nav: .container
+        each item in HEADER.navigation
+            li
+                +link({
+                    className: 'ns-header__nav-item',
+                    iconLeft: item.icon,
+                    theme: 'black',
+                    size: 'medium'
+                })!=item.text
+
+    .ns-header__mobile: .container
+        .ns-header__mobile-buttons
+            +button({ href: '#', iconLeft: 'catalog', isOnlyIcon: true, variant: 'transparent', size: 'medium' })
+            +button({ className: 'ns-header--search-drop', iconLeft: 'search', isOnlyIcon: true, variant: 'transparent', size: 'medium' })
+        a(href="/").ns-header__mobile-logo
+            img(src=`${FILES_IMAGES_PATH}header/logo.svg` width="126" height="56" alt="ИННО ИМПЛАНТ РУ")/
+        .ns-header__mobile-buttons
+            +button({ href: '#', iconLeft: 'user', isOnlyIcon: true, variant: 'transparent', size: 'medium' })
+            +button({ href: '#', iconLeft: 'cart', isOnlyIcon: true, variant: 'transparent', size: 'medium' })
+
+    .ns-header__mobile-search: .container
+        +input({ type: 'search', placeholder: 'Поиск по товарам', isFullWidth: true })
